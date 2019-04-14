@@ -7,8 +7,8 @@
  */
 
 import React, {Component} from 'react';
-import {Button, Platform, StyleSheet, Text, TextInput, View} from 'react-native';
-import Modal from "react-native-modal";
+import {Button, Modal, Platform, StyleSheet, Text, TextInput, View} from 'react-native';
+// import Modal from "react-native-modal";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -44,10 +44,16 @@ export default class App extends Component<Props> {
               title="Open Modal"
               color="#841584"
           />
-          <View>
-              <Modal isVisible={this.state.showModal}>
+          <View style={{marginTop: 20}}>
+              <Modal
+                  visible={this.state.showModal}>
                   <View style={{ flex: 1 }}>
                       <Text>A modal</Text>
+                      <TextInput
+                          style={{height: 40, borderColor: 'gray', borderWidth: 1, alignSelf: 'stretch'}}
+                          onFocus={ () => console.log('onFocus called on modal TextInput')}
+                          onBlur={ () => console.log('onBlur called modal TextInput')}
+                      />
                       <Button
                           onPress={ () => this.setState( () => ({ showModal: false}))}
                           title="Close Modal"
